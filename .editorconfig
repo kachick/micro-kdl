@@ -1,0 +1,21 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+indent_style = space
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[{Makefile,*.mk,go.mod,go.sum,*.go,.gitmodules,*.sh,*.dash,*.bash,*.zsh}]
+indent_style = tab
+indent_size = 4
+
+# https://github.com/JohnnyMorganz/StyLua/blob/69183979f878da71b9a07bcd249e0176a740f28e/.editorconfig#L13C1-L15C16
+[*.lua]
+indent_style = tab
+indent_size = 4

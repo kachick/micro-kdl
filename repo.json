@@ -1,0 +1,15 @@
+[{
+  "Name": "kdl",
+  "Description": "KDL language highlighting",
+  "Tags": ["kdl"],
+  "Website": "https://github.com/kachick/micro-kdl",
+  "Versions": [
+    {
+      "Version": "0.0.1",
+      "Url": "https://github.com/kachick/micro-kdl/archive/v0.0.1.zip",
+      "Require": {
+        "micro": ">=2.0.13"
+      }
+    }
+  ]
+}]

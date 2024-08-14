@@ -1,0 +1,22 @@
+layout {
+    pane size=2 borderless=true {
+        plugin location="zellij:status-bar"
+    }
+    // BPS
+    pane split_direction="vertical" {
+        pane name="work" size="50%" {
+
+        }
+        pane split_direction="horizontal" size="50%" {
+            pane name="micro" command="task" {
+                args "micro"
+            }
+            pane name="helix" command="hx" {
+                args "--config" "./example/helix/config.toml" "example/official.kdl"
+            }
+        }
+    }
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+}

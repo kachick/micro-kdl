@@ -1,0 +1,43 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    deps:
+      - task: fmt
+      - task: lint
+  workspace:
+    cmds:
+      - zellij --layout=./example/zellij/layouts/side-by-side.kdl
+  micro:
+    cmds:
+      - rm -rf ./config-dir
+      - mkdir --parents ./config-dir/plug/micro-kdl
+      # symbolic link doesn't work
+      - cp kdl.yaml kdl.lua repo.json ./config-dir/plug/micro-kdl
+      # Recommend zenburn for the testing theme, it is built-in both micro 256 colors and helix, and highlighting brackets in micro version. "default" is not enough
+      - micro --colorscheme "zenburn" --config-dir config-dir ./example/official.kdl
+  fmt:
+    cmds:
+      - dprint fmt
+      - stylua *.lua
+      - git ls-files '*.nix' | xargs nix fmt
+  lint:
+    cmds:
+      - dprint check
+      - typos . .github .vscode
+      # nix fmt doesn't have check: https://github.com/NixOS/nix/issues/6918
+      - git ls-files '*.nix' | xargs nixfmt --check
+  deps:
+    cmds:
+      - nix --version
+      - nil --version
+      - task --version
+      - dprint --version
+      - typos --version
+      - lua -v
+      - stylua --version
+      - micro --version
+      - zellij --version
+      - hx --version

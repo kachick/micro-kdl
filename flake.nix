@@ -40,6 +40,9 @@
                 helix
 
                 zellij
+
+                _7zz
+                gh
               ];
             };
         }

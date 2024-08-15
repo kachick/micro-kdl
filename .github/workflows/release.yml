@@ -1,0 +1,50 @@
+name: 🚀
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+    branches: [main]
+    paths:
+      - 'repo.json'
+      - 'kdl.**'
+      - '**.lua'
+  pull_request:
+    paths:
+      - 'repo.json'
+      - 'kdl.**'
+      - '**.lua'
+  workflow_dispatch:
+
+jobs:
+  package:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Upload minimum files as an artifact
+        uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4.3.6
+        with:
+          if-no-files-found: 'error'
+          name: 'micro-kdl'
+          path: |
+            README.md
+            LICENSE
+            repo.json
+            kdl.yaml
+            kdl.lua
+  release:
+    if: startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    needs: [package]
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      # Required to checkout for gh command
+      - uses: actions/checkout@v4
+      - run: |
+          gh run download
+          tree
+          mv plugins/dprint_plugin_kdl.wasm plugins/plugin.wasm
+      - run: |
+          gh release create --verify-tag "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" plugins/plugin.wasm

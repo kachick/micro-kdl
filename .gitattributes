@@ -1,1 +1,5 @@
 .envrc linguist-vendored
+
+# https://github.com/github-linguist/linguist/issues/4848
+kdl.yaml linguist-detectable=true
+*.yaml linguist-language=YAML

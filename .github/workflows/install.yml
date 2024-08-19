@@ -1,0 +1,28 @@
+name: Install
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'repo.json'
+  pull_request:
+    paths:
+      - 'repo.json'
+  schedule:
+    # Every 10:42 JST
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '42 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  tasks:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@ab6bcb2d5af0e904d04aea750e2089e9dc4cbfdd # v13
+      - uses: DeterminateSystems/magic-nix-cache-action@b46e247b898aa56e6d2d2e728dc6df6c84fdb738 # v7
+      - run: |
+          mkdir -p config-dir
+          cp example/micro/settings.json config-dir
+      - run: nix develop --command micro --config-dir config-dir -plugin install kdl
+      - run: tree ~/.config/micro

@@ -6,7 +6,7 @@
   "Versions": [
     {
       "Version": "0.1.0",
-      "Url": "https://github.com/kachick/micro-kdl/releases/download/0.1.0/micro-kdl.zip",
+      "Url": "https://github.com/kachick/micro-kdl/releases/download/v0.1.0/micro-kdl.zip",
       "Require": {
         "micro": ">=2.0.13"
       }

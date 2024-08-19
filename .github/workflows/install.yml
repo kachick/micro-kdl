@@ -26,5 +26,9 @@ jobs:
       - run: |
           mkdir -p config-dir
           cp example/micro/settings.json config-dir
+      # NOTE: micro does not raise error even if given `-plugin wrong_option`, so should check in after steps
       - run: nix develop --command micro --config-dir config-dir -plugin install kdl
-      - run: tree config-dir
+      - name: Make sure the plugin is correctly installed
+        run: |
+          tree config-dir
+          ls -alh ./config-dir/plug/micro-kdl

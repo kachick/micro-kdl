@@ -40,6 +40,8 @@
                 helix
 
                 zellij
+
+                pngquant
               ];
             };
         }

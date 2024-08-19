@@ -23,6 +23,8 @@ tasks:
       - dprint fmt
       - stylua *.lua
       - git ls-files '*.nix' | xargs nix fmt
+      # 98 is the normal flag in pngquant when skipped
+      - bash -eux -c 'pngquant --skip-if-larger --force --ext .png assets/*.png || [ $? -eq 98 ]'
   lint:
     cmds:
       - dprint check
@@ -41,3 +43,4 @@ tasks:
       - micro --version
       - zellij --version
       - hx --version
+      - pngquant --version

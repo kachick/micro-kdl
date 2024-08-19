@@ -25,7 +25,11 @@ jobs:
       - uses: DeterminateSystems/magic-nix-cache-action@b46e247b898aa56e6d2d2e728dc6df6c84fdb738 # v7
       - run: |
           mkdir -p config-dir
-          cp example/micro/settings.json config-dir
+          cat <<'JSON' >./config-dir/settings.json
+            {
+              "pluginrepos": ["https://raw.githubusercontent.com/kachick/micro-kdl/${{ github.ref }}/repo.json"]
+            }
+          JSON
       # NOTE: micro does not raise error even if given `-plugin wrong_option`, so should check in after steps
       - run: nix develop --command micro --config-dir config-dir -plugin install kdl
       - name: Make sure the plugin is correctly installed

@@ -27,7 +27,7 @@ jobs:
           mkdir -p config-dir
           cat <<'JSON' >./config-dir/settings.json
             {
-              "pluginrepos": ["https://raw.githubusercontent.com/kachick/micro-kdl/${{ github.ref }}/repo.json"]
+              "pluginrepos": ["https://raw.githubusercontent.com/kachick/micro-kdl/${{ github.sha }}/repo.json"]
             }
           JSON
       # NOTE: micro does not raise error even if given `-plugin wrong_option`, so should check in after steps

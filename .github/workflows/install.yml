@@ -3,9 +3,11 @@ on:
   push:
     branches: [main]
     paths:
+      - '.github/workflows/install.yml'
       - 'repo.json'
   pull_request:
     paths:
+      - '.github/workflows/install.yml'
       - 'repo.json'
   schedule:
     # Every 10:42 JST
@@ -25,4 +27,4 @@ jobs:
           mkdir -p config-dir
           cp example/micro/settings.json config-dir
       - run: nix develop --command micro --config-dir config-dir -plugin install kdl
-      - run: tree ~/.config/micro
+      - run: tree config-dir

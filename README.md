@@ -1,6 +1,7 @@
 # micro-kdl
 
-[![CI - Nix Status](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml/badge.svg?branch=main)](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml?query=branch%3Amain+)
+[![CI - Nix](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml/badge.svg?branch=main)](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml?query=branch%3Amain+)
+[![CI - Install](https://github.com/kachick/micro-kdl/actions/workflows/install.yml/badge.svg?branch=main)](https://github.com/kachick/micro-kdl/actions/workflows/install.yml?query=branch%3Amain+)
 
 [micro](https://github.com/zyedidia/micro) editor syntax highlighting for [KDL](https://github.com/kdl-org/kdl)
 
@@ -28,7 +29,7 @@ Personally I was started from this simple solution, I don't know any disadvantag
 
 ```bash
 cd ~/.config/micro/plug
-git clone https://github.com/kachick/micro-kdl
+git clone https://github.com/kachick/micro-kdl kdl
 ```
 
 ### Nix - home-manager

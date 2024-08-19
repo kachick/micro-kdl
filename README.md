@@ -29,7 +29,7 @@ Personally I was started from this simple solution, I don't know any disadvantag
 
 ```bash
 cd ~/.config/micro/plug
-git clone https://github.com/kachick/micro-kdl
+git clone https://github.com/kachick/micro-kdl kdl
 ```
 
 ### Nix - home-manager

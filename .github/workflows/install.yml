@@ -35,4 +35,4 @@ jobs:
       - name: Make sure the plugin is correctly installed
         run: |
           tree config-dir
-          ls -alh ./config-dir/plug/micro-kdl
+          ls -alh ./config-dir/plug/kdl

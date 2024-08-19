@@ -8,9 +8,38 @@
 
 ## Installation
 
+### Plugin Manager
+
+```bash
+micro ~/.config/micro/settings.json
+```
+
+```json
+"pluginrepos": ["https://raw.githubusercontent.com/kachick/micro-kdl/main/repo.json"],
+```
+
+```bash
+micro -plugin install kdl
+```
+
+### Git
+
+Personally I was started from this simple solution, I don't know any disadvantage for others except including non related files.
+
 ```bash
 cd ~/.config/micro/plug
 git clone https://github.com/kachick/micro-kdl
 ```
 
-If you want to check the behavior without plugin installations, check the [guide](CONTRIBUTING.md)
+### Nix - home-manager
+
+See [my dotfiles](https://github.com/kachick/dotfiles/blob/f042b85145fc045966a114d72beb60477af06141/pkgs/micro-kdl/default.nix) for the packaging example.
+
+### Test and develop without installation
+
+Check the [guide](CONTRIBUTING.md)
+
+## Limitations
+
+- Only syntax highlighting
+- No formatter, completions and LSP

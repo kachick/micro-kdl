@@ -41,6 +41,9 @@
 
                 zellij
 
+                _7zz
+                gh
+
                 pngquant
               ];
             };

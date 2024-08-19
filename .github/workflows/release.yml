@@ -21,17 +21,17 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@ab6bcb2d5af0e904d04aea750e2089e9dc4cbfdd # v13
+      - run: nix develop --command task package
       - name: Upload minimum files as an artifact
         uses: actions/upload-artifact@834a144ee995460fba8ed112a2fc961b36a5ec5a # v4.3.6
         with:
           if-no-files-found: 'error'
-          name: 'micro-kdl'
+          name: 'plugins'
+          # Do not archive raw files with this action for splitting jobs for different triggers and displaying
+          # This intentionally mades nested zip as `plgins(.zip)/micro-kdl.zip`. Cannot flatten with the upload-artifact restriction
           path: |
-            README.md
-            LICENSE
-            repo.json
-            kdl.yaml
-            kdl.lua
+            micro-kdl.zip
   release:
     if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-24.04
@@ -44,7 +44,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           gh run download
-          tree
-          mv plugins/dprint_plugin_kdl.wasm plugins/plugin.wasm
+          tree plugins
+      - name: Wait other jobs
+        uses: kachick/wait-other-jobs@v3
+        timeout-minutes: 15
       - run: |
-          gh release create --verify-tag "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" plugins/plugin.wasm
+          gh release create --verify-tag "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" ./plugins/micro-kdl.zip

@@ -1,6 +1,6 @@
 # micro-kdl
 
-[![CI - Nix Status](https://github.com/kachick/micro-kdl/actions/workflows/ci-nix.yml/badge.svg?branch=main)](https://github.com/kachick/micro-kdl/actions/workflows/ci-nix.yml?query=branch%3Amain+)
+[![CI - Nix Status](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml/badge.svg?branch=main)](https://github.com/kachick/micro-kdl/actions/workflows/nix.yml?query=branch%3Amain+)
 
 [micro](https://github.com/zyedidia/micro) editor syntax highlighting for [KDL](https://github.com/kdl-org/kdl)
 

@@ -4,13 +4,13 @@ on:
   push:
     branches: [main]
     paths:
-      - '.github/workflows/ci-nix.yml'
+      - '.github/workflows/nix.yml'
       - '**.nix'
       - 'flake.*'
       - 'Taskfile.yml'
   pull_request:
     paths:
-      - '.github/workflows/ci-nix.yml'
+      - '.github/workflows/nix.yml'
       - '**.nix'
       - 'flake.*'
       - 'Taskfile.yml'

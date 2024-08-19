@@ -43,6 +43,8 @@
 
                 _7zz
                 gh
+
+                pngquant
               ];
             };
         }

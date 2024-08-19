@@ -9,7 +9,7 @@ tasks:
       - task: lint
   workspace:
     cmds:
-      - zellij --layout=./example/zellij/layouts/side-by-side.kdl
+      - zellij --layout=./workspace/zellij/layouts/side-by-side.kdl
   micro:
     cmds:
       - rm -rf ./config-dir

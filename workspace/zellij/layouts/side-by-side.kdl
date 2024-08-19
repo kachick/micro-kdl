@@ -12,7 +12,7 @@ layout {
                 args "micro"
             }
             pane name="helix" command="hx" {
-                args "--config" "./example/helix/config.toml" "example/official.kdl"
+                args "--config" "./workspace/helix/config.toml" "example/official.kdl"
             }
         }
     }

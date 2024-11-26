@@ -1,15 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    unstable-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      unstable-nixpkgs,
-    }:
+    { self, nixpkgs }:
     let
       inherit (nixpkgs) lib;
       forAllSystems = lib.genAttrs lib.systems.flakeExposed;
@@ -20,12 +15,12 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          unstables = unstable-nixpkgs.legacyPackages.${system};
         in
         {
           default = pkgs.mkShellNoCC {
-            buildInputs =
-              (with pkgs; [
+            buildInputs = (
+              with pkgs;
+              [
                 bashInteractive
                 git
                 coreutils # mkdir, cp, rm
@@ -34,6 +29,7 @@
                 nil
                 go-task
 
+                dprint
                 typos
 
                 micro
@@ -49,8 +45,8 @@
                 gh
 
                 pngquant
-              ])
-              ++ [ unstables.dprint ];
+              ]
+            );
           };
         }
       );

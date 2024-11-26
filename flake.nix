@@ -1,14 +1,17 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    unstable-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    selfup = {
+      url = "github:kachick/selfup/v1.1.7";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      unstable-nixpkgs,
+      selfup,
     }:
     let
       inherit (nixpkgs) lib;
@@ -20,11 +23,10 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          unstables = unstable-nixpkgs.legacyPackages.${system};
         in
         {
           default = pkgs.mkShellNoCC {
-            buildInputs =
+            buildInputs = (
               (with pkgs; [
                 bashInteractive
                 git
@@ -34,6 +36,7 @@
                 nil
                 go-task
 
+                dprint
                 typos
 
                 micro
@@ -50,7 +53,8 @@
 
                 pngquant
               ])
-              ++ [ unstables.dprint ];
+              ++ [ selfup.packages.${system}.default ]
+            );
           };
         }
       );

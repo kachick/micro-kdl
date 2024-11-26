@@ -31,9 +31,13 @@ tasks:
       - typos . .github .vscode
       # nix fmt doesn't have check: https://github.com/NixOS/nix/issues/6918
       - git ls-files '*.nix' | xargs nixfmt --check
+      - git ls-files | xargs selfup list -check
   package:
     cmds:
       - 7zz a -tzip micro-kdl.zip repo.json kdl.yaml kdl.lua README.md LICENSE
+  selfup:
+    cmds:
+      - git ls-files | xargs selfup run
   deps:
     cmds:
       - nix --version
@@ -49,3 +53,4 @@ tasks:
       - gh --version
       - 7zz --help | grep -F Copyright
       - pngquant --version
+      - selfup -version

@@ -40,8 +40,10 @@ rules:
   # Float
   - constant.number: '[-+]?(\d+)\.\d*'
   # Boolean and inf, nan without sign
+  # `\s` might be better than `\b` for separators? `foo-contantish` pattern is available for KDL node
   - constant.bool.true: '\btrue\b'
   - constant.bool.false: '\bfalse\b'
+  - constant: '\bnull\b'
   # Comments
   - comment:
       start: '//'

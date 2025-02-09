@@ -43,7 +43,7 @@ jobs:
       # Required to checkout for gh command
       - uses: actions/checkout@v4
       - run: |
-          gh run download
+          gh run download '${{ github.run_id }}'
           tree plugins
       - name: Wait other jobs
         uses: kachick/wait-other-jobs@v3

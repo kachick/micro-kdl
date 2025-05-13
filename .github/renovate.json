@@ -20,5 +20,13 @@
   ],
   "schedule": [
     "on Tuesday"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": [
+        "kachick/dprint-plugin-kdl"
+      ],
+      "allowedVersions": "<0.3.0"
+    }
   ]
 }

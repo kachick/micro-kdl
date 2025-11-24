@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
       - run: nix develop --command task package
       - name: Upload minimum files as an artifact
@@ -41,7 +41,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     steps:
       # Required to checkout for gh command
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           gh run download '${{ github.run_id }}'
           tree plugins

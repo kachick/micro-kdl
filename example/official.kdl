@@ -30,3 +30,9 @@ package {
     }
   }
 }
+
+// https://github.com/zyedidia/micro/pull/3549
+examples-micro-3549 {
+  // https://github.com/zyedidia/micro/pull/3549#discussion_r1858298053
+  node-null null
+}

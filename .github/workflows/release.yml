@@ -50,7 +50,7 @@ jobs:
           gh run download '${{ github.run_id }}'
           tree plugins
       - name: Wait other jobs
-        uses: kachick/wait-other-jobs@v3
+        uses: kachick/wait-other-jobs@v4
         timeout-minutes: 15
       - run: |
           gh release create --verify-tag "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" ./plugins/micro-kdl.zip

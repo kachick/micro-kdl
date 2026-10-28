@@ -1,4 +1,5 @@
-# https://taskfile.dev
+# https://taskfile.dev/styleguide/
+# Avoid chaining commands with ; or && in a single line. Use multiple cmd items for independent steps, or write a script under scripts/ instead.
 
 version: '3'
 
@@ -7,9 +8,15 @@ tasks:
     deps:
       - task: fmt
       - task: lint
+
+  check:
+    deps:
+      - task: lint
+
   workspace:
     cmds:
       - zellij --layout=./workspace/zellij/layouts/side-by-side.kdl
+
   micro:
     cmds:
       - rm -rf ./config-dir
@@ -18,6 +25,7 @@ tasks:
       - cp kdl.yaml kdl.lua repo.json ./config-dir/plug/micro-kdl
       # Recommend zenburn for the testing theme, it is built-in both micro 256 colors and helix, and highlighting brackets in micro version. "default" is not enough
       - micro --colorscheme "zenburn" --config-dir config-dir ./example/official.kdl
+
   fmt:
     cmds:
       - dprint fmt
@@ -25,19 +33,19 @@ tasks:
       - git ls-files '*.nix' | xargs nix fmt
       # 98 is the normal flag in pngquant when skipped
       - bash -eux -c 'pngquant --skip-if-larger --force --ext .png assets/*.png || [ $? -eq 98 ]'
+
   lint:
     cmds:
       - dprint check
-      - typos . .github .vscode
+      - typos . .github
       # nix fmt doesn't have check: https://github.com/NixOS/nix/issues/6918
       - git ls-files '*.nix' | xargs nixfmt --check
-      - git ls-files | xargs selfup list -check
+      - stylua --check *.lua
+
   package:
     cmds:
       - 7zz a -tzip micro-kdl.zip repo.json kdl.yaml kdl.lua README.md LICENSE
-  selfup:
-    cmds:
-      - git ls-files | xargs selfup run
+
   deps:
     cmds:
       - nix --version
@@ -53,4 +61,3 @@ tasks:
       - gh --version
       - 7zz --help | grep -F Copyright
       - pngquant --version
-      - selfup -version

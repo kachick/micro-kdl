@@ -1,4 +1,5 @@
 .direnv
+.vscode/
 
 config-dir
 
